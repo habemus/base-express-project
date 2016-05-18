@@ -7,6 +7,8 @@ module.exports = function (app, options) {
   ////
   // CORS
   var corsWhitelist = options.corsWhitelist || [];
+  corsWhitelist = (typeof corsWhitelist === 'string') ?
+    corsWhitelist.split(',') : corsWhitelist;
 
   app.log.info('cors whitelist', corsWhitelist);
 
@@ -28,7 +30,6 @@ module.exports = function (app, options) {
 
   ////
   // JSON MESSAGE
-
   var jsonM = jsonMessage(options.apiVersion);
 
   // global middleware

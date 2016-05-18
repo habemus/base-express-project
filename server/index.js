@@ -27,8 +27,6 @@ function create_SERVER_PROJECT_NAME_(options) {
   // logging
   require('./app/setup/logger')(app, options);
 
-  app.use(cors());
-
   // create a mongoose mongo db connection
   var conn = mongoose.createConnection(options.mongodbURI);
 
@@ -49,6 +47,7 @@ function create_SERVER_PROJECT_NAME_(options) {
 
   // setup global middleware
   require('./app/setup/middleware')(app, options);
+  
   // define description route
   app.get('/who', function (req, res) {
     res.json.item({
